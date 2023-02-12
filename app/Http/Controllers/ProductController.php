@@ -33,15 +33,23 @@ class ProductController extends Controller
             ->where('image.enable',1)
             ->where('product_id',$rowProduct->id)
             ->get();
+            $imgCollection=[];
+            foreach ($imageProduct as $row){
+                // dd(url('image/images/'.$row->file));
+                $row->file=url('image/images/'.$row->file);
+                array_push($imgCollection,$row);
+                
+            }
             $rowProduct->cagetory=$categoryProduct;
-            $rowProduct->image=$imageProduct;
+            $rowProduct->image=$imgCollection;
         }
         
         // dd($data);
         $res=$this->StandardResult(true,$data);
         if ($id){
             $data=DB::table('product')->where('enable',true)->where('id',$id)->first();
-            
+            // dd($data);
+            if ($data){
                 $categoryProduct=DB::table('category_product')->select('category_product.category_id','category.name')
                 ->leftJoin('category','category.id','category_product.category_id')
                 ->leftJoin('product','product.id','category_product.product_id')
@@ -56,13 +64,24 @@ class ProductController extends Controller
                 ->where('image.enable',1)
                 ->where('product_id',$data->id)
                 ->get();
+                $imgCollection=[];
+                foreach ($imageProduct as $row){
+                    // dd(url('image/images/'.$row->file));
+                    $row->file=url('api/image/images/'.$row->file);
+                    array_push($imgCollection,$row);
+                    
+                }
                 $data->cagetory=$categoryProduct;
-                $data->image=$imageProduct;
+                $data->image=$imgCollection;
             
-            
+            }
             $res=$this->StandardResult(true,$data);
         }
         return response()->json($res);
+    }
+
+    public function getImage(Request $req){
+        return $this->preview($req->folder,$req->filename);
     }
 
     public function update(Request $req){

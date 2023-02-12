@@ -18,9 +18,9 @@ class ImageSeeder extends Seeder
  
     	for($i = 1; $i <= 20; $i++){
     		DB::table('image')->insert([
-    			'name' => 'image'.$i.'jpg',
-    			'file' => 'image'.$i.'jpg',
-    			'enable' => $faker->boolean(),
+    			'name' => 'image'.$i.'.jpg',
+    			'file' => 'image'.$i.'.jpg',
+    			'enable' => true,
     		]);
  
     	}

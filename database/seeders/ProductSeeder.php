@@ -20,7 +20,7 @@ class ProductSeeder extends Seeder
     		DB::table('product')->insert([
     			'name' => 'product '.$i,
     			'description' => $faker->text(100),
-    			'enable' => $faker->boolean(),
+    			'enable' => true,
     		]);
  
     	}

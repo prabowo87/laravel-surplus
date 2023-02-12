@@ -24,6 +24,7 @@ Route::post('/category/add',[CategoryController::class, 'add'])->name('category-
 Route::delete('/category/delete',[CategoryController::class, 'delete'])->name('category-delete');
 
 Route::get('/products',[ProductController::class, 'get'])->name('products');
+Route::get('/image/{folder}/{filename}',[ProductController::class, 'getImage'])->name('image');
 Route::post('/product/update',[ProductController::class, 'update'])->name('product-update');
 Route::post('/product/add',[ProductController::class, 'add'])->name('product-add');
 Route::delete('/product/delete',[ProductController::class, 'delete'])->name('product-delete');
