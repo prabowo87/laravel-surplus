@@ -43,4 +43,22 @@ class CategoryController extends Controller
         }
         return response()->json($res);
     }
+    public function add(Request $req){
+        $input = $req->all();
+        $validator = Validator::make($input, [
+            'name' => 'required',
+            'enable' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['error' => $validator->errors()->all()]);
+        }
+        $data = new CategoryModel;
+            $data->name=$input['name'];
+            $data->enable=$input['enable'];
+            $data->save();
+            $res=$this->StandardResult(true,$data);
+        
+        return response()->json($res);
+    }
 }
