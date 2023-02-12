@@ -24,6 +24,6 @@ Route::post('/category/add',[CategoryController::class, 'add'])->name('category-
 Route::delete('/category/delete',[CategoryController::class, 'delete'])->name('category-delete');
 
 Route::get('/products',[ProductController::class, 'get'])->name('products');
-Route::put('/product/update',[ProductController::class, 'update'])->name('product-update');
+Route::post('/product/update',[ProductController::class, 'update'])->name('product-update');
 Route::post('/product/add',[ProductController::class, 'add'])->name('product-add');
 Route::delete('/product/delete',[ProductController::class, 'delete'])->name('product-delete');
