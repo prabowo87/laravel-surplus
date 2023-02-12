@@ -19,4 +19,5 @@ use App\Http\Controllers\CategoryController;
 }); */
 Route::get('/category',[CategoryController::class, 'get'])->name('category');
 Route::put('/category/update',[CategoryController::class, 'update'])->name('category-update');
-Route::post('/category/add',[CategoryController::class, 'add'])->name('category-update');
+Route::post('/category/add',[CategoryController::class, 'add'])->name('category-add');
+Route::delete('/category/delete',[CategoryController::class, 'delete'])->name('category-delete');

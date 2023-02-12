@@ -61,4 +61,21 @@ class CategoryController extends Controller
         
         return response()->json($res);
     }
+    public function delete(Request $req){
+        $input = $req->all();
+        $validator = Validator::make($input, [
+            'id' => 'required'
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['error' => $validator->errors()->all()]);
+        }
+        $data=CategoryModel::find($input['id']);
+        if ($data){
+            $data->delete(); 
+            
+            $res=$this->StandardResult(true,$data);
+        }
+        return response()->json($res);
+    }
 }
